@@ -106,13 +106,13 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 )
 
 :: 4. Build the webclient
-@IF EXIST "%~dp0\node.exe" (
-  "%~dp0\node.exe"  "%DEPLOYMENT_TARGET%\app.js" %*
-) ELSE (
-  @SETLOCAL
-  @SET PATHEXT=%PATHEXT:;.JS;=;%
-  node  "%DEPLOYMENT_TARGET%\app.js" %*
-)
+rem @IF EXIST "%~dp0\node.exe" (
+rem   "%~dp0\node.exe"  "%DEPLOYMENT_TARGET%\app.js" %*
+rem ) ELSE (
+rem   @SETLOCAL
+rem   @SET PATHEXT=%PATHEXT:;.JS;=;%
+rem   node  "%DEPLOYMENT_TARGET%\app.js" %*
+rem )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
