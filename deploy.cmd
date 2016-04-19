@@ -106,10 +106,9 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 )
 
 :: 4. Build the webclient
-IF EXIST "%DEPLOYMENT_TARGET%\gulpfile.js" (
+IF EXIST "%DEPLOYMENT_TARGET%\app.js" (
   pushd "%DEPLOYMENT_TARGET%"
-  echo "Building web site using Gulp"
-  call :ExecuteCmd ".\node_modules\.bin\gulp.cmd"
+  call :ExecuteCmd "npm start"
   if !ERRORLEVEL! NEQ 0 goto error
   popd
 )
