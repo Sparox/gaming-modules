@@ -1,0 +1,17 @@
+{
+  "name": "gaming-modules",
+  "version": "1.0.0",
+  "description": "gaming-modules",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "seneca": "^2.0.1",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}
