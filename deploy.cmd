@@ -106,11 +106,12 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 )
 
 :: 4. Build the webclient
-IF EXIST "%DEPLOYMENT_TARGET%\app.js" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd "npm start"
-  if !ERRORLEVEL! NEQ 0 goto error
-  popd
+@IF EXIST "%~dp0\node.exe" (
+  "%~dp0\node.exe"  "%DEPLOYMENT_TARGET%\app.js" %*
+) ELSE (
+  @SETLOCAL
+  @SET PATHEXT=%PATHEXT:;.JS;=;%
+  node  "%DEPLOYMENT_TARGET%\app.js" %*
 )
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
