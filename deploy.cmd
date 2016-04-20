@@ -106,13 +106,13 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 )
 
 :: 4. Build the webclient
-rem @IF EXIST "%~dp0\node.exe" (
-rem   "%~dp0\node.exe"  "%DEPLOYMENT_TARGET%\app.js" %*
-rem ) ELSE (
-rem   @SETLOCAL
-rem   @SET PATHEXT=%PATHEXT:;.JS;=;%
-rem   node  "%DEPLOYMENT_TARGET%\app.js" %*
-rem )
+IF EXIST "%DEPLOYMENT_TARGET%\gulpfile.js" (
+  pushd "%DEPLOYMENT_TARGET%"
+  echo "Building web site using Gulp"
+  call :ExecuteCmd ".\node_modules\.bin\gulp.cmd"
+  if !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub

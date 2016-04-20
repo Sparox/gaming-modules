@@ -11,7 +11,7 @@ var redis = require('socket.io-redis');
 io.adapter(redis({pubClient: pub, subClient: sub}));
 
 
-var port = process.env.PORT || 3001;
+var port = process.env.PORT || 3000;
 
 module.exports = function (app) {
   app.use('/', router);
