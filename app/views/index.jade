@@ -1,8 +1,15 @@
 extends layout
 
 block content
-    ul(class='messages')
-    input(class='inputMessage', placeholder='Type here...')
+    ul.pages
+      li(class='chatPage')
+        div.chatArea
+          ul.messages
+        input.inputMessage(placeholder='Type here...')
+      li(class='loginPage')
+        div.form
+          h3.title nickname
+          input.usernameInput(type='text', maxlength='14')
 block js
   script(src='https://code.jquery.com/jquery-1.10.2.min.js')
   script(src='https://cdn.socket.io/socket.io-1.2.0.js')

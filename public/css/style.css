@@ -18,6 +18,7 @@ html, input {
     Arial,
     "Lucida Grande",
     sans-serif;
+    color:#000;
 }
 
 html, body {
@@ -48,11 +49,11 @@ ul {
 
 /* Login Page */
 
-.login.page {
+.loginPage {
   background-color: #000;
 }
 
-.login.page .form {
+.loginPage .form {
   height: 100px;
   margin-top: -100px;
   position: absolute;
@@ -62,8 +63,8 @@ ul {
   width: 100%;
 }
 
-.login.page .form .usernameInput {
-  background-color: transparent;
+.loginPage .form .usernameInput {
+  background-color: #000;
   border: none;
   border-bottom: 2px solid #fff;
   outline: none;
@@ -72,24 +73,23 @@ ul {
   width: 400px;
 }
 
-.login.page .title {
+.loginPage .title {
   font-size: 200%;
 }
 
-.login.page .usernameInput {
+.loginPage .usernameInput {
   font-size: 200%;
   letter-spacing: 3px;
 }
 
-.login.page .title, .login.page .usernameInput {
+.loginPage .title, .loginPage .usernameInput {
   color: #fff;
   font-weight: 100;
 }
 
 /* Chat page */
 
-.chat.page {
-  display: none;
+.chatPage {
 }
 
 /* Font */

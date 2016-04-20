@@ -1,7 +1,7 @@
 var express = require('express'),
   router = express.Router();
 var app = express();
-var server = require('http').createServer(app);
+var server = app.listen(3001);
 var io = require('socket.io')(server);
 
 var pub = require('redis').createClient(6379,'gaming-modules-test.redis.cache.windows.net', {auth_pass: 'fKf+tGjxJxPAhwaq6RxgRQcyu6eSLtS2wEZIpppp0go=', return_buffers: true});
@@ -11,7 +11,7 @@ var redis = require('socket.io-redis');
 io.adapter(redis({pubClient: pub, subClient: sub}));
 
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT;
 
 module.exports = function (app) {
   app.use('/', router);
@@ -21,9 +21,9 @@ router.get('/', function (req, res, next) {
     res.render('index', {});
 });
 
-server.listen(port, function () {
-  console.log('Server listening at port %d', port);
-});
+// server.listen(port, function () {
+//   console.log('Server listening at port %d', port);
+// });
 
 // Routing
 app.use(express.static(__dirname + '/public'));
@@ -37,6 +37,7 @@ io.on('connection', function (socket) {
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
+  	console.log(data);
     // we tell the client to execute 'new message'
     socket.broadcast.emit('new message', {
       username: socket.username,
