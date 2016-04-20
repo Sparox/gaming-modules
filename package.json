@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "test": "istanbul cover tape \"test/*-test.js\"",
+    "lint": "eslint app.js",
+    "ci-test": "istanbul cover tape \"test/*-test.js\" > test.tap && istanbul report clover",
+    "ci-lint": "eslint -f checkstyle app.js > checkstyle-result.xml",
     "start": "node app.js"
   },
   "dependencies": {
@@ -20,9 +24,12 @@
     "socket.io-redis": "^0.1.4"
   },
   "devDependencies": {
+    "eslint": "^2.8.0",
     "gulp": "^3.9.0",
-    "gulp-nodemon": "^2.0.2",
     "gulp-livereload": "^3.8.0",
-    "gulp-plumber": "^1.0.0"
+    "gulp-nodemon": "^2.0.2",
+    "gulp-plumber": "^1.0.0",
+    "istanbul": "^0.4.3",
+    "tape": "^4.5.1"
   }
 }
