@@ -4,13 +4,6 @@ var app = express();
 var server = app.listen(3001);
 var io = require('socket.io')(server);
 
-var pub = require('redis').createClient(6379,'gaming-modules-test.redis.cache.windows.net', {auth_pass: 'fKf+tGjxJxPAhwaq6RxgRQcyu6eSLtS2wEZIpppp0go=', return_buffers: true});
-var sub = require('redis').createClient(6379,'gaming-modules-test.redis.cache.windows.net', {auth_pass: 'fKf+tGjxJxPAhwaq6RxgRQcyu6eSLtS2wEZIpppp0go=', return_buffers: true});
-
-var redis = require('socket.io-redis');
-io.adapter(redis({pubClient: pub, subClient: sub}));
-
-
 var port = process.env.PORT;
 
 module.exports = function (app) {
