@@ -18,6 +18,7 @@ $(function() {
 
   var $loginui = $('.login.ui'); // The login ui
   var $chatui = $('.chat.ui'); // The chatroom ui
+  var $userui = $('.user.ui');
 
   // Prompt for setting a username
   var username;
@@ -48,7 +49,8 @@ $(function() {
       $chatui.show();
       $loginui.off('click');
       $currentInput = $inputMessage.focus();
-
+      $('#userlogin').text(username);
+      $userui.show();
       // Tell the server your username
       socket.emit('add user', username);
     }
@@ -232,7 +234,7 @@ $(function() {
   socket.on('login', function(data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    var message = "Welcome to Gaming modules Chat";
     log(message, {
       prepend: true
     });

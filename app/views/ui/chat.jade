@@ -1,0 +1,10 @@
+//- includes/index.jade
+div(class='chat ui' hidden)
+  div.chatArea
+   ul(class='nav nav-tabs')
+    li.active
+     a(data-toggle='tab', href='#global') Global
+   div.tab-content
+    div(id='global', class='tab-pane in active')
+     ul.messages
+   input.inputMessage(placeholder='Type here...')
