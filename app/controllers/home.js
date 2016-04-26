@@ -21,6 +21,7 @@ router.get('/', function(req, res, next) {
 
 // Routing
 app.use(express.static(__dirname + '/public'));
+app.use('/node_modules/requirejs', express.static(__dirname + '/node_modules/requirejs'));
 
 // Chatroom
 
