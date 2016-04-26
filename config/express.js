@@ -25,6 +25,8 @@ module.exports = function(app, config) {
   app.use(cookieParser());
   app.use(compress());
   app.use(express.static(config.root + '/public'));
+  app.use('/node_modules/requirejs', express.static('./node_modules/requirejs'));
+  app.use('/node_modules/phaser/', express.static('./node_modules/phaser/dist'));
   app.use(methodOverride());
 
   var controllers = glob.sync(config.root + '/app/controllers/*.js');

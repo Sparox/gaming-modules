@@ -15,14 +15,6 @@ router.get('/', function(req, res, next) {
   res.render('index', {});
 });
 
-// server.listen(port, function () {
-//   console.log('Server listening at port %d', port);
-// });
-
-// Routing
-app.use(express.static(__dirname + '/public'));
-app.use('/node_modules/requirejs', express.static(__dirname + '/node_modules/requirejs'));
-
 // Chatroom
 
 var numUsers = 0;

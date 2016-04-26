@@ -74,6 +74,11 @@ ul {
   font-size: 200%;
 }
 
+.uis {
+	position: absolute;
+	top:0px;
+}
+
 .login.ui .usernameInput {
   background-color: rgba(0,0,0,0.3);
   font-size: 200%;
