@@ -13,9 +13,15 @@ $(function() {
       }
     }
   });
-  requirejs(['phaser', 'phaser-components/utils/init', 'chat'], function (Phaser, Init, chat) {
+  requirejs([
+    'phaser', 
+    'phaser-components/utils/init',
+    'phaser-components/components/player', 
+    'chat'], 
+    function (Phaser, Init, Player, chat) {
     var game = new Phaser.Game(window.innerWidth,window.innerHeight, Phaser.AUTO, 'game_div');
+    
     game.state.add('Init', Init, true);
-
+    game.state.add('Player', Player, false);
   });
 });

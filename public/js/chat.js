@@ -25,9 +25,10 @@ $(function() {
   var connected = false;
   var typing = false;
   var lastTypingTime;
-  var $currentInput = $usernameInput.focus();
+  //var $currentInput = $usernameInput.focus();
 
   var socket = io(':3001');
+
 
   function addParticipantsMessage(data) {
     var message = '';
@@ -48,7 +49,7 @@ $(function() {
       $loginui.fadeOut();
       $chatui.show();
       $loginui.off('click');
-      $currentInput = $inputMessage.focus();
+      //$currentInput = $inputMessage.focus();
       $('#userlogin').text(username);
       $userui.show();
       // Tell the server your username
@@ -197,9 +198,9 @@ $(function() {
 
   $window.keydown(function(event) {
     // Auto-focus the current input when a key is typed
-    if (!(event.ctrlKey || event.metaKey || event.altKey)) {
-      $currentInput.focus();
-    }
+    // if (!(event.ctrlKey || event.metaKey || event.altKey)) {
+    //   $currentInput.focus();
+    // }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
       if (username) {
@@ -219,14 +220,14 @@ $(function() {
   // Click events
 
   // Focus input when clicking anywhere on login ui
-  $loginui.click(function() {
-    $currentInput.focus();
-  });
+  // $loginui.click(function() {
+  //   $currentInput.focus();
+  // });
 
-  // Focus input when clicking on the message input's border
-  $inputMessage.click(function() {
-    $inputMessage.focus();
-  });
+  // // Focus input when clicking on the message input's border
+  // $inputMessage.click(function() {
+  //   $inputMessage.focus();
+  // });
 
   // Socket events
 
