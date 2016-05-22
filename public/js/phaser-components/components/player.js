@@ -1,9 +1,9 @@
 /*globals define:false, $:false */
-  'use strict';
+'use strict';
 
 define([
-    'phaser'
-], function (Phaser) {
+  'phaser'
+], function(Phaser) {
 
   function Player(game) {
     this.game = game;
@@ -11,19 +11,16 @@ define([
 
   Player.prototype = {
     constructor: Player,
-    init: function () {
-    },
-    preload: function () {
-      this.game.load.image('player', 'img/point.png');
-    },  
+    init: function() {},
+    preload: function() {},
     create: function() {
-      this.sprite = this.game.add.sprite(window.innerWidth/2,window.innerHeight/2,'player');
+      this.sprite = this.game.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'player');
       this.group = this.game.add.group();
       this.group.add(this.sprite);
 
     },
     update: function() {
-      if (!$('.usernameInput').is(':focus') && !$('.inputMessage').is(':focus') ) {
+      if (!$('.usernameInput').is(':focus') && !$('.inputMessage').is(':focus')) {
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
           this.sprite.x--;
         }
