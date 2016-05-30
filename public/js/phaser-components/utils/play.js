@@ -24,13 +24,11 @@ define([
       var startX = window.innerWidth / 2;
       var startY = window.innerHeight / 2;
 
-      this.mainPlayer = new Player(this.game, startX, startY, true);
+      this.mainPlayer = new Player(this.game, startX, startY, true, this.game.usercolor);
       //this.game.camera.follow(this.mainPlayer.sprite);
-
-      this.mainPlayer.nickname = this.game.username;
     },
     update: function() {
-      
+
     }
   };
 

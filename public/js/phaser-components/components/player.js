@@ -5,14 +5,14 @@ define([
   'phaser'
 ], function(Phaser) {
 
-  function Player(game, x, y, isMainPlayer) {
+  function Player(game, x, y, isMainPlayer, color) {
     this.game = game;
     this.isMainPlayer = isMainPlayer;
     this.position = {
       x: x,
       y: y
     };
-    this.setupSprite(this.position);
+    this.setupSprite(this.position, color);
   }
 
   Player.prototype = {
@@ -22,7 +22,7 @@ define([
     create: function() {
 
     },
-    setupSprite: function(position) {
+    setupSprite: function(position, color) {
       this.sprite = this.game.add.sprite(position.x, position.y, 'player');
       this.game.add.existing(this.sprite);
       this.sprite.update = this.update;
@@ -30,6 +30,8 @@ define([
       this.sprite.sprite = this.sprite;
       this.sprite.game = this.game;
       this.game.characters.add(this.sprite);
+      this.username = this.game.username;
+      this.sprite.tint = color.replace('#', '0x');
     },
     move: function(position) {
       this.sprite.x = position.x;
