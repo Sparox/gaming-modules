@@ -10,9 +10,8 @@ define([
 
   Chat.prototype = {
     constructor: Chat,
-    create: function(game) {
+    create: function() {
       var me = this;
-      this.game = game;
       this.FADE_TIME = 150; // ms
       this.TYPING_TIMER_LENGTH = 400; // ms
       this.COLORS = [
@@ -143,6 +142,9 @@ define([
         this.$userui.show();
         // Tell the server your username
         this.socket.emit('add user', this.username);
+        this.game.username = this.username;
+        this.game.usercolor = this.getUsernameColor(this.username);
+        this.game.state.start('Play');
       }
     },
 
