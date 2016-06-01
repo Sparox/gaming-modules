@@ -39,23 +39,26 @@ define([
     },
     update: function() {
       if (!$('.usernameInput').is(':focus') && !$('.inputMessage').is(':focus') && this.isMainPlayer) {
+        var hasMoved = false;
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) || this.game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
           this.sprite.x--;
+          hasMoved = true;
         }
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) || this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
           this.sprite.x++;
+          hasMoved = true;
         }
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.UP) || this.game.input.keyboard.isDown(Phaser.Keyboard.Z)) {
           this.sprite.y--;
+          hasMoved = true;
         }
         if (this.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) || this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
           this.sprite.y++;
+          hasMoved = true;
         }
-        this.position.x = this.sprite.x;
-        this.position.y = this.sprite.y;
-
-        this.game.socket.emit('user move', {position: this.position, player: this.username});
-
+        if (hasMoved) {
+          this.game.socket.emit('user move', { position: this.position, player: this.game.username });
+        }
       }
     }
   };

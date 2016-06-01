@@ -49,6 +49,10 @@ io.on('connection', function(socket) {
     });
   });
 
+  socket.on('user move', function(data) {
+    socket.broadcast.emit('user move', data);
+  });
+
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function() {
     socket.broadcast.emit('typing', {

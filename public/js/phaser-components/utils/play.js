@@ -10,8 +10,14 @@ define([
     this.game = game;
     this.socket = io(':3001');
     this.socket.on('user joined', function(data) {
-      if (data.username != me.game.username)
-      new Player(game, window.innerWidth / 2, window.innerHeight / 2, false, me.getUsernameColor(data.username));
+      if (data.username != me.game.username) {
+        new Player(game, window.innerWidth / 2, window.innerHeight / 2, false, me.getUsernameColor(data.username), data.username);
+      }
+    });
+    this.socket.on('user move', function(data) {
+      if (data.player != me.game.username) {
+        me.game.characters.children.filter(function(p){return p.username == data.player;})[0].position = data.position;
+      }
     });
   }
 
@@ -35,7 +41,7 @@ define([
       var startX = window.innerWidth / 2;
       var startY = window.innerHeight / 2;
 
-      this.mainPlayer = new Player(this.game, startX, startY, true, this.game.usercolor);
+      this.mainPlayer = new Player(this.game, startX, startY, true, this.game.usercolor, this.game.username);
       //this.game.camera.follow(this.mainPlayer.sprite);
     },
     update: function() {
