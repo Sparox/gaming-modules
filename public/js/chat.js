@@ -39,7 +39,7 @@ define([
 
       this.socket = io(':3001');
 
-
+      this.game.socket = this.socket;
       // Keyboard events
 
       this.$window.keydown(function(event) {
