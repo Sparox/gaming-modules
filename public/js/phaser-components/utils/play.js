@@ -19,6 +19,17 @@ define([
         me.game.characters.children.filter(function(p){return p.username == data.player;})[0].position = data.position;
       }
     });
+    this.socket.on('user left', function(data) {
+        var character = me.game.characters.children.filter(function(p){return p.username == data.username;})[0];
+        me.game.characters.children.splice(character,1);
+    });
+    this.socket.on('get users', function(data) {
+      data.users.forEach(function(e) {
+        if (e.username != me.game.username) {
+          new Player(game, e.position.x, e.position.y, false, me.getUsernameColor(e.username), e.username);
+        }
+      });
+    });
   }
 
   Play.prototype = {
@@ -42,6 +53,7 @@ define([
       var startY = window.innerHeight / 2;
 
       this.mainPlayer = new Player(this.game, startX, startY, true, this.game.usercolor, this.game.username);
+      this.socket.emit('get users');
       //this.game.camera.follow(this.mainPlayer.sprite);
     },
     update: function() {

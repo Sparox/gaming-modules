@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
 // Chatroom
 
 var numUsers = 0;
+var usersConnected = [];
 
 io.on('connection', function(socket) {
   var addedUser = false;
@@ -37,6 +38,7 @@ io.on('connection', function(socket) {
 
     // we store the username in the socket session for this client
     socket.username = username;
+    usersConnected.push({username: socket.username, position: {}});
     ++numUsers;
     addedUser = true;
     socket.emit('login', {
@@ -49,7 +51,15 @@ io.on('connection', function(socket) {
     });
   });
 
+  socket.on('get users', function() {
+    socket.emit('get users', {
+      users:usersConnected
+    });
+  });
+
   socket.on('user move', function(data) {
+    var user = usersConnected.filter(function(u) {return u.username == data.player;})[0];
+    user.position = data.position;
     socket.broadcast.emit('user move', data);
   });
 
@@ -71,6 +81,8 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     if (addedUser) {
       --numUsers;
+      var user = usersConnected.filter(function(u){return u.username == socket.username;})[0];
+      usersConnected.splice(user,1);    
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
